@@ -6,7 +6,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 // const loader = new GLTFLoader();
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 5, 100);
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -17,15 +17,13 @@ document.body.appendChild(renderer.domElement);
 // const cube = new THREE.Mesh(geometry, material);
 // scene.add(cube);
 
-camera.position.z = 5;
-
-camera.position.z = 5;
+camera.position.set(0, 5, 50);
 
 const controls = new OrbitControls(camera, renderer.domElement);
 controls.addEventListener('change', render); // use if there is no animation loop
 controls.minDistance = 2;
 controls.maxDistance = 10;
-controls.target.set(0, 0, -0.2);
+controls.target.set(0, 0, 0.2);
 controls.update();
 
 // function animate() {
@@ -39,26 +37,36 @@ controls.update();
 
 // animate();
 
+const light = new THREE.AmbientLight(0xffffff); // soft white light
+scene.add(light);
+
 const loader = new GLTFLoader();
+const modelLh = new THREE.Object3D();
 
 loader.load(
-  '/asset/resource/pepsi_cola.glb',
+  '/asset/resource/Fox.glb',
   async function (gltf) {
     const model = gltf.scene;
 
+    // console.log(gltf.animations); // Array<THREE.AnimationClip>
+    // console.log(gltf.scenes); // Array<THREE.Group>
+    // console.log(gltf.scene); // Array<THREE.Group>
+    // console.log(gltf.cameras); // Array<THREE.Camera>
+    // console.log(gltf.asset); // Object
+
+    modelLh.add(gltf.scene); // this gltf.scene is centered
+    modelLh.scale.set(0.05, 0.05, 0.05); // because gltf.scene is big
+    modelLh.position.set(2, -0.99, -1);
+    scene.add(modelLh);
+
     // wait until the model can be added to the scene without blocking due to shader compilation
 
-    await renderer.compileAsync(model, camera, scene);
+    await renderer.compileAsync(modelLh, camera, scene);
 
-    scene.add(model);
+    // scene.add(model);
 
     render();
     //   scene.add(gltf.scene);
-    //   gltf.animations; // Array<THREE.AnimationClip>
-    //   gltf.scene; // THREE.Group
-    //   gltf.scenes; // Array<THREE.Group>
-    //   gltf.cameras; // Array<THREE.Camera>
-    //   gltf.asset; // Object
   },
   // called while loading is progressing
   function (xhr) {
