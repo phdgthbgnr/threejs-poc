@@ -10,6 +10,8 @@ export default class rendering {
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = three.PCFSoftShadowMap;
     document.body.appendChild(this.renderer.domElement);
+    this.clock = new three.Clock();
+    this.mixer = false;
   }
 
   spin = () => {
@@ -22,6 +24,11 @@ export default class rendering {
 
   animate = () => {
     requestAnimationFrame(this.animate);
+
+    const delta = this.clock.getDelta();
+    if (this.mixer) {
+      this.mixer.update(delta);
+    }
 
     this.mainGroup.rotation.y += 0.01;
     // lightHelper.update();
@@ -39,6 +46,10 @@ export default class rendering {
   getRenderer = () => {
     return this.renderer;
   };
+
+  setMixer(m) {
+    this.mixer = m;
+  }
 }
 
 export { rendering };
