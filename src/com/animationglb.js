@@ -5,35 +5,51 @@ const animationglb = (three, gltf, gui) => {
   const run = gltf.animations[2];
 
   const params = {
-    stop: false,
+    survey: false,
     walk: false,
     run: false,
   };
   const anim = gui.addFolder('Animation');
-  anim.add(params, 'stop').onChange(function (val) {
-    if (val) {
-      mixer.clipAction(survey).play();
-    } else {
-      mixer.clipAction(survey).stop();
-    }
-  });
+  anim
+    .add(params, 'survey')
+    .listen()
+    .onChange(function (val) {
+      if (val) {
+        mixer.clipAction(survey).play();
+      } else {
+        mixer.clipAction(survey).stop();
+      }
+    });
 
-  anim.add(params, 'walk').onChange(function (val) {
-    if (val) {
-      mixer.clipAction(walk).play();
-      console.log(val);
-    } else {
-      mixer.clipAction(walk).stop();
-    }
-  });
+  anim
+    .add(params, 'walk')
+    .listen()
+    .onChange(function (val) {
+      if (val) {
+        mixer.clipAction(walk).play();
+        console.log(val);
+      } else {
+        mixer.clipAction(walk).stop();
+      }
+    });
 
-  anim.add(params, 'run').onChange(function (val) {
-    if (val) {
-      mixer.clipAction(run).play();
-    } else {
-      mixer.clipAction(run).stop();
+  anim
+    .add(params, 'run')
+    .listen()
+    .onChange(function (val) {
+      if (val) {
+        mixer.clipAction(run).play();
+      } else {
+        mixer.clipAction(run).stop();
+      }
+    });
+
+  const setChecked = (prop) => {
+    for (let param in params) {
+      params[param] = false;
     }
-  });
+    params[prop] = true;
+  };
   return mixer;
   // getMixer = () => {
   //   return mixer;

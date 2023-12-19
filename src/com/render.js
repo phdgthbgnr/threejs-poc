@@ -25,16 +25,14 @@ export default class rendering {
   animate = () => {
     requestAnimationFrame(this.animate);
 
+    // controls.update();
+
     const delta = this.clock.getDelta();
     if (this.mixer) {
       this.mixer.update(delta);
     }
 
     this.mainGroup.rotation.y += 0.01;
-    // lightHelper.update();
-    // spothelper.update();
-    // plane.rotation.x += 0.01;
-    // console.log(plane.rotation.x);
 
     this.render();
   };
