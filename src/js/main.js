@@ -122,13 +122,6 @@ const Alight = new THREE.AmbientLight(0xffffff, 0.5); // soft white light
 scene.add(Alight);
 Alight.castShadow = true;
 
-// const plight = new THREE.PointLight(0xff0000, 1, 100);
-// plight.position.set(50, 50, 50);
-// plight.castShadow = true;
-// scene.add(plight);
-// const lightHelper = new THREE.PointLightHelper(plight, 1);
-// scene.add(lightHelper);
-
 const spotLight = new THREE.SpotLight(0xffffff, 5000);
 spotLight.position.set(150, 300, 10);
 spotLight.angle = Math.PI / 6;
@@ -161,14 +154,16 @@ const params = {
   decay: spotLight.decay,
   focus: spotLight.shadow.focus,
   shadows: true,
-  helpers: true,
+  helpers: false,
 };
 
 // gui.add(params, 'map', textures).onChange(function (val) {
 //   spotLight.map = val;
 // });
 
-const spot = gui.addFolder('Lumière (spotLight)');
+const lightgui = gui.addFolder('Lumières');
+
+const spot = lightgui.addFolder('spotLight');
 
 spot.addColor(params, 'color').onChange(function (val) {
   spotLight.color.setHex(val);
@@ -212,12 +207,18 @@ spot.add(params, 'shadows').onChange(function (val) {
   });
 });
 
-spot.add(params, 'helpers').onChange(function (val) {
-  lightHelper.visible = val;
-  helper.visible = val;
-});
+spot
+  .add(params, 'helpers')
+  .listen()
+  .onFinishChange(function (val) {
+    lightHelper.visible = val;
+    helper.visible = val;
+  });
 
 gui.open();
+
+lightHelper.visible = false;
+helper.visible = false;
 
 // const dlightFolder = gui.addFolder('Lumière');
 // dlightFolder.add(spotLight.position, 'x', -30, 200);
