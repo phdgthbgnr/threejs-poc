@@ -8,6 +8,7 @@ const controls = (camera, renderA) => {
   controls.target.set(0, 0, 0);
   controls.enableDamping = true;
   controls.update();
+  return controls;
 };
 
 export { controls };

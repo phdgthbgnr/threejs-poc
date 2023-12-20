@@ -25,8 +25,6 @@ export default class rendering {
   animate = () => {
     requestAnimationFrame(this.animate);
 
-    // controls.update();
-
     const delta = this.clock.getDelta();
     if (this.mixer) {
       this.mixer.update(delta);
