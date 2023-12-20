@@ -22,7 +22,10 @@ camera.position.set(0, 45, 50);
 const mainGroup = new THREE.Group();
 scene.add(mainGroup);
 
-// Render
+// fog
+scene.fog = new THREE.Fog(0x000000, 100, 150);
+
+// Init Render
 const renderA = new rendering(THREE, scene, camera, mainGroup);
 
 // Controls
@@ -45,6 +48,7 @@ spotlight(THREE, mainGroup, gui, renderA.getRenderer(), scene);
 // add ambientlight
 ambientlight(THREE, gui, scene);
 
+// animate (spin)
 renderA.spin();
 
 // controls ------
