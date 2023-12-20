@@ -34,7 +34,9 @@ const spotlight = (three, mainGroup, gui, renderer, scene) => {
     helpers: false,
   };
 
-  const lightgui = gui.addFolder('Lumières');
+  // controls -----
+
+  const lightgui = gui.addFolder('Lights');
   const spot = lightgui.addFolder('spotLight');
 
   spot.addColor(params, 'color').onChange(function (val) {

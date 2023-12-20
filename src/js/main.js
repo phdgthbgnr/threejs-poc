@@ -47,4 +47,16 @@ ambientlight(THREE, gui, scene);
 
 renderA.spin();
 
-// renderA.render();
+// controls ------
+
+const params = {
+  spin: true,
+};
+
+const spingui = gui.addFolder('Spin');
+spingui
+  .add(params, 'spin')
+  .name('Auto spin')
+  .onChange(function (val) {
+    renderA.setSpin(val);
+  });

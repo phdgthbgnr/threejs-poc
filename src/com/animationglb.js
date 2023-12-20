@@ -12,7 +12,7 @@ const animationglb = (three, gltf, gui) => {
     walk: false,
     run: false,
   };
-  const anim = gui.addFolder('Animation');
+  const anim = gui.addFolder('Fox animation');
   anim
     .add(params, 'stop')
     .listen()

@@ -6,7 +6,7 @@ const ambientlight = (three, gui, scene) => {
 
   const folders = gui.foldersRecursive();
   for (let i in folders) {
-    if (folders[i]._title == 'Lumières') {
+    if (folders[i]._title == 'Lights') {
       lightgui = folders[i];
     }
   }
@@ -15,7 +15,7 @@ const ambientlight = (three, gui, scene) => {
     color: Alight.color.getHex(),
   };
 
-  lightgui = lightgui != '' ? lightgui : gui.addFolder('Lumières');
+  lightgui = lightgui != '' ? lightgui : gui.addFolder('Lights');
   const amb = lightgui.addFolder('ambientLight');
   amb.addColor(params, 'color').onChange(function (val) {
     Alight.color.setHex(val);

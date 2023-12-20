@@ -12,6 +12,7 @@ export default class rendering {
     document.body.appendChild(this.renderer.domElement);
     this.clock = new three.Clock();
     this.mixer = false;
+    this.spinFlag = true;
   }
 
   spin = () => {
@@ -30,7 +31,7 @@ export default class rendering {
       this.mixer.update(delta);
     }
 
-    this.mainGroup.rotation.y += 0.01;
+    if (this.spinFlag) this.mainGroup.rotation.y += 0.01;
 
     this.render();
   };
@@ -45,6 +46,10 @@ export default class rendering {
 
   setMixer(m) {
     this.mixer = m;
+  }
+
+  setSpin(s) {
+    this.spinFlag = s;
   }
 }
 
