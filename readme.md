@@ -9,3 +9,7 @@
 ### git config credential.helper store
 
 ### git push (http://example.com/repo.git)
+
+#### Push to local à remote repo
+
+git push all primary_test
