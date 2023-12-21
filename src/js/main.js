@@ -41,7 +41,7 @@ ground.rotation.x = Math.PI / 2;
 mainGroup.add(ground);
 
 // load asseet
-loadgttf(THREE, '/asset/resource/Fox.glb', mainGroup, renderA, scene, camera, gui);
+loadgttf(THREE, './asset/resource/Fox.glb', mainGroup, renderA, scene, camera, gui);
 
 // add spoptlight
 spotlight(THREE, mainGroup, gui, renderA.getRenderer(), scene);
