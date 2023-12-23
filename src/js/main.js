@@ -4,14 +4,14 @@ import GUI from 'lil-gui';
 // Custom modules
 
 // loader gltf
-import { loadgttf } from '../com/loader';
+import { loadgttf } from './com/loader';
 // render
-import { rendering } from '../com/render';
+import { rendering } from './com/render';
 // Lights
-import { spotlight } from '../com/lights/spotlight';
-import { ambientlight } from '../com/lights/ambientlight';
+import { spotlight } from './com/lights/spotlight';
+import { ambientlight } from './com/lights/ambientlight';
 //controls
-import { controls } from '../com/controls';
+import { controls } from './com/controls';
 
 const gui = new GUI();
 const scene = new THREE.Scene();
