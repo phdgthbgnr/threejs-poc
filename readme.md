@@ -10,11 +10,11 @@
 
 ### git push (http://example.com/repo.git)
 
-#### Push to local à remote repo
+---
 
-git push all primary_test
+### Push to local & remote repo
 
-### Add second remote repo
+#### Add second remote repo
 
 #### Add remote 2
 
@@ -33,5 +33,6 @@ git remote set-url --add --push all https://usergit1@smeserver9/git/test_gltf.gi
 git remote set-url --add --push all git@github.com:phdgthbgnr/threejs-poc.git
 
 git push all <BRANCH>
+git push all primary_test
 
 git fetch --all
