@@ -41,7 +41,9 @@ module.exports = {
   },
 
   plugins: [
-    new MiniCssExtractPlugin(),
+    //CSS
+    new MiniCssExtractPlugin({ filename: 'styles.min.css' }),
+    //HTML
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       excludeChunks: ['worker'],

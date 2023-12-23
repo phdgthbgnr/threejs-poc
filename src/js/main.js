@@ -1,3 +1,5 @@
+'use strict';
+
 import * as THREE from 'three';
 import GUI from 'lil-gui';
 
@@ -12,6 +14,8 @@ import { spotlight } from './com/lights/spotlight';
 import { ambientlight } from './com/lights/ambientlight';
 //controls
 import { controls } from './com/controls';
+// CSS
+import '../css/styles.scss';
 
 const gui = new GUI();
 const scene = new THREE.Scene();
