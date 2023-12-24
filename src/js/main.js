@@ -29,6 +29,10 @@ scene.add(mainGroup);
 // fog
 scene.fog = new THREE.Fog(0x000000, 100, 150);
 
+// background
+// const loader = new THREE.TextureLoader();
+// scene.background = loader.load('./img/back.jpg');
+
 // Init Render
 const renderA = new rendering(THREE, scene, camera, mainGroup);
 
