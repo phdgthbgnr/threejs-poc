@@ -1,5 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -47,6 +48,16 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       excludeChunks: ['worker'],
+    }),
+    // COPY ASSETS TO DST
+    new CopyWebpackPlugin({
+      patterns: [
+        { from: 'src/img', to: 'img' },
+        { from: 'src/asset/resource', to: 'asset/resource' },
+      ],
+      options: {
+        concurrency: 100,
+      },
     }),
   ],
 
